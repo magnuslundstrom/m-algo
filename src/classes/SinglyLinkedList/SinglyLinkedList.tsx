@@ -1,4 +1,3 @@
-import React from 'react';
 import { ListNode } from './Node';
 
 type Callback = (node: ListNode, index: number) => any;
@@ -18,6 +17,7 @@ export class SinglyLinkedList {
       this.tail = newNode;
     }
     this.length++;
+    return this;
   }
 
   traverse(cb: Callback) {
