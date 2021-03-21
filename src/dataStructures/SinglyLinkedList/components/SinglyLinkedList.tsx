@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import ComponentListNode from './Node';
 import { SinglyLinkedList } from '../classes/SinglyLinkedList';
 import { colors } from '../../../colors';
-import { FunctionTextBox } from '../../../components/FunctionTextBox';
+import { Sidebar } from '../../../components/Sidebar';
 
 // Initial setup
 const defaultList = new SinglyLinkedList();
@@ -41,16 +41,16 @@ export class Singly extends React.Component {
     const { functionBoxTextToDisplay } = this.state;
     return (
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 3fr', marginTop: '50px' }}>
-        <div style={{ backgroundColor: colors.dark, paddingLeft: '25px', marginRight: '50px' }}>
-          <h2 style={{ color: colors.sand }}>Operations</h2>
-          <button style={{ backgroundColor: colors.lightGreen, color: colors.sand }} onClick={() => this.operate('push')}>
+        <div style={{ backgroundColor: colors.c400, paddingLeft: '25px', marginRight: '50px' }}>
+          <h2 style={{ color: colors.c100 }}>Operations</h2>
+          <button style={{ backgroundColor: colors.cta, color: colors.c100 }} onClick={() => this.operate('push')}>
             Push
           </button>
         </div>
         <div style={{ display: 'flex', flexWrap: 'wrap' }}>
           {this.state.list.length === 0 ? 'No items in the list' : this.renderList()}
         </div>
-        {this.state.functionBoxTextToDisplay && <FunctionTextBox functionBody={functionBoxTextToDisplay} />}
+        <Sidebar functionBody={functionBoxTextToDisplay} />
       </div>
     );
   }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { colors } from '../../../colors';
-import { Node } from '../classes';
+import { Node } from '../classes/Node';
 import './SinglyLinkedListAnimations.css';
 
 interface State {
@@ -52,7 +52,7 @@ export default class NodeComponent extends React.Component<Props, State> {
   }
 }
 const divStyles = {
-  backgroundColor: colors.darkBlue,
+  backgroundColor: colors.c300,
   borderRadius: '50%',
   height: '50px',
   width: '50px',
@@ -61,5 +61,5 @@ const divStyles = {
 };
 
 const pStyles = {
-  color: colors.sand,
+  color: colors.c100,
 };

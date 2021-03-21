@@ -1,7 +1,4 @@
-export class Node {
-  next: Node | null = null;
-  constructor(public value: string | number) {}
-}
+import { Node } from './Node';
 type Callback = (node: Node, index: number) => any;
 
 export class SinglyLinkedList {
