@@ -1,7 +1,8 @@
 import React, { ReactNode } from 'react';
-import { ComponentListNode } from '../classes/SinglyLinkedList/Node';
-import { SinglyLinkedList } from '../classes/SinglyLinkedList/SinglyLinkedList';
-import { colors } from '../colors';
+import ComponentListNode from './Node';
+import { SinglyLinkedList } from '../classes/SinglyLinkedList';
+import { colors } from '../../../colors';
+import { FunctionTextBox } from '../../../components/FunctionTextBox';
 
 // Initial setup
 const defaultList = new SinglyLinkedList();
@@ -9,9 +10,10 @@ defaultList.push('1');
 defaultList.push('2');
 defaultList.push('3');
 
-class Singly extends React.Component {
+export class Singly extends React.Component {
   state = {
     list: defaultList,
+    functionBoxTextToDisplay: '',
   };
 
   renderList() {
@@ -25,15 +27,18 @@ class Singly extends React.Component {
   }
 
   operate(functionName: keyof typeof SinglyLinkedList.prototype) {
+    let functionCalled: string = '';
     switch (functionName) {
       case 'push':
         this.state.list[functionName](this.state.list.length + 1);
+        functionCalled = this.state.list[functionName].toString();
         break;
     }
-    this.setState({ list: this.state.list });
+    this.setState({ list: this.state.list, functionBoxTextToDisplay: functionCalled }, () => {});
   }
 
   render() {
+    const { functionBoxTextToDisplay } = this.state;
     return (
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 3fr', marginTop: '50px' }}>
         <div style={{ backgroundColor: colors.dark, paddingLeft: '25px', marginRight: '50px' }}>
@@ -45,6 +50,7 @@ class Singly extends React.Component {
         <div style={{ display: 'flex', flexWrap: 'wrap' }}>
           {this.state.list.length === 0 ? 'No items in the list' : this.renderList()}
         </div>
+        {this.state.functionBoxTextToDisplay && <FunctionTextBox functionBody={functionBoxTextToDisplay} />}
       </div>
     );
   }

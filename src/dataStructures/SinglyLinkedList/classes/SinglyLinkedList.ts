@@ -1,14 +1,16 @@
-import { ListNode } from './Node';
-
-type Callback = (node: ListNode, index: number) => any;
+export class Node {
+  next: Node | null = null;
+  constructor(public value: string | number) {}
+}
+type Callback = (node: Node, index: number) => any;
 
 export class SinglyLinkedList {
-  head: ListNode | null = null;
-  tail: ListNode | null = null;
+  head: Node | null = null;
+  tail: Node | null = null;
   length: number = 0;
 
-  push(value: ListNode['value']) {
-    const newNode = new ListNode(value);
+  push(value: Node['value']) {
+    const newNode = new Node(value);
     if (!this.head) {
       this.head = newNode;
       this.tail = newNode;

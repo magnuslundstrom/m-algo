@@ -1,31 +1,22 @@
-import { throws } from 'node:assert';
 import React from 'react';
-import { colors } from '../../colors';
-export class ListNode {
-  next: ListNode | null = null;
-  constructor(public value: string | number) {}
-}
-
-export enum Position {
-  Head = 0,
-  Body = 1,
-  Tail = 2,
-}
+import { colors } from '../../../colors';
+import { Node } from '../classes';
+import './SinglyLinkedListAnimations.css';
 
 interface State {
-  value: ListNode['value'];
+  value: Node['value'];
   isHead: boolean;
   isTail: boolean;
   didUpdate: boolean;
 }
 
 interface Props {
-  value: ListNode['value'];
+  value: Node['value'];
   isHead: boolean;
   isTail: boolean;
 }
 
-export class ComponentListNode extends React.Component<Props, State> {
+export default class NodeComponent extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = { ...this.props, didUpdate: false };
@@ -33,12 +24,16 @@ export class ComponentListNode extends React.Component<Props, State> {
 
   componentDidUpdate(prevProps: Props) {
     if (prevProps.isHead !== this.props.isHead || prevProps.isTail !== this.props.isTail) {
-      this.setState({ ...this.props, didUpdate: true });
+      this.setState({ ...this.props, didUpdate: true }, () => {
+        setTimeout(() => {
+          this.setState({ didUpdate: false });
+        }, 500);
+      });
     }
   }
 
   render() {
-    const { isTail, isHead } = this.state;
+    const { isTail, isHead, didUpdate } = this.state;
     return (
       <div style={{ display: 'flex' }}>
         <div>
@@ -48,7 +43,7 @@ export class ComponentListNode extends React.Component<Props, State> {
           <p style={{ textAlign: 'center' }}>{isHead ? 'Head' : isTail ? 'Tail' : ''}</p>
         </div>
         {!isTail && (
-          <p style={{ marginLeft: '25px', marginRight: '25px' }}>
+          <p style={{ marginLeft: '25px', marginRight: '25px' }} className={didUpdate ? 'arrow-did-update' : ''}>
             <i className='fas fa-long-arrow-alt-right'></i>
           </p>
         )}
@@ -64,6 +59,7 @@ const divStyles = {
   display: 'grid',
   placeItems: 'center',
 };
+
 const pStyles = {
   color: colors.sand,
 };
