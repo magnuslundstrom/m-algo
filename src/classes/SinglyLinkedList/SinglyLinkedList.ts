@@ -19,6 +19,10 @@ export class SinglyLinkedList {
     return this;
   }
 
+  pop() {
+    console.log('Hi!');
+  }
+
   traverse(cb: Callback) {
     let current = this.head;
     let index = 0;
@@ -29,3 +33,6 @@ export class SinglyLinkedList {
     }
   }
 }
+
+Object.defineProperty(SinglyLinkedList.prototype, 'push', { enumerable: true });
+Object.defineProperty(SinglyLinkedList.prototype, 'pop', { enumerable: true });

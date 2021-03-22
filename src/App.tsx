@@ -1,5 +1,5 @@
-import Container from './components/Container';
-import Singly from './dataStructures/SinglyLinkedList/components/SinglyLinkedList';
+import Container from './components/container/Container';
+import Singly from './components/lists/SinglyLinkedList';
 function App() {
   return (
     <div className='App'>

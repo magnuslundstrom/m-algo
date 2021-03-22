@@ -1,16 +1,13 @@
 import { FunctionComponent } from 'react';
-import Header from './Header';
-const style = {
-  maxWidth: '1200px',
-  margin: '50px auto',
-};
+import Header from '../header/Header';
+import { StyledContainer } from './StyledContainer';
 
 const container: FunctionComponent = ({ children }) => {
   return (
-    <div style={style}>
+    <StyledContainer>
       <Header />
       {children}
-    </div>
+    </StyledContainer>
   );
 };
 

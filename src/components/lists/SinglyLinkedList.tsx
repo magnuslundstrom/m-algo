@@ -1,14 +1,17 @@
 import React, { ReactNode } from 'react';
-import ComponentListNode from './Node';
-import { SinglyLinkedList } from '../classes/SinglyLinkedList';
-import { colors } from '../../../colors';
-import { Sidebar } from '../../../components/Sidebar';
+import ComponentListNode from '../nodes/Node';
+import { SinglyLinkedList } from '../../classes/SinglyLinkedList/SinglyLinkedList';
+import { colors } from '../colors';
+import { Sidebar } from '../sidebar/Sidebar';
+import { StyledOperateButton } from '../buttons/StyledOperateButton';
 
 // Initial setup
 const defaultList = new SinglyLinkedList();
 defaultList.push('1');
 defaultList.push('2');
 defaultList.push('3');
+
+type singlyKeys = keyof typeof SinglyLinkedList.prototype;
 
 export class Singly extends React.Component {
   state = {
@@ -26,6 +29,13 @@ export class Singly extends React.Component {
     return nodes;
   }
 
+  renderOperations() {
+    const methods = Object.keys(Object.getPrototypeOf(this.state.list)) as singlyKeys[];
+    return methods.map((method) => {
+      return <StyledOperateButton onClick={() => this.operate(method)}>{method}</StyledOperateButton>;
+    });
+  }
+
   operate(functionName: keyof typeof SinglyLinkedList.prototype) {
     let functionCalled: string = '';
     switch (functionName) {
@@ -33,6 +43,8 @@ export class Singly extends React.Component {
         this.state.list[functionName](this.state.list.length + 1);
         functionCalled = this.state.list[functionName].toString();
         break;
+      case 'pop':
+        functionCalled = this.state.list[functionName].toString();
     }
     this.setState({ list: this.state.list, functionBoxTextToDisplay: functionCalled }, () => {});
   }
@@ -40,17 +52,14 @@ export class Singly extends React.Component {
   render() {
     const { functionBoxTextToDisplay } = this.state;
     return (
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 3fr', marginTop: '50px' }}>
-        <div style={{ backgroundColor: colors.c400, paddingLeft: '25px', marginRight: '50px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', marginTop: '50px', gridGap: '25px' }}>
+        <Sidebar functionBody={functionBoxTextToDisplay}>
           <h2 style={{ color: colors.c100 }}>Operations</h2>
-          <button style={{ backgroundColor: colors.cta, color: colors.c100 }} onClick={() => this.operate('push')}>
-            Push
-          </button>
-        </div>
+          {this.renderOperations()}
+        </Sidebar>
         <div style={{ display: 'flex', flexWrap: 'wrap' }}>
           {this.state.list.length === 0 ? 'No items in the list' : this.renderList()}
         </div>
-        <Sidebar functionBody={functionBoxTextToDisplay} />
       </div>
     );
   }

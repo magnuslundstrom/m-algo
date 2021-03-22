@@ -6,3 +6,11 @@ export const colors = {
   cta: '#F19F4d',
   gray: '#D9D9D9',
 };
+
+export const spacing = {
+  xs: '5px',
+  sm: '10px',
+  md: '15px',
+  lg: '30px',
+  xl: '50px',
+};
