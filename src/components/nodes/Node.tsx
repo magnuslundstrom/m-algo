@@ -1,11 +1,12 @@
 import React from 'react';
+import { CSSTransition } from 'react-transition-group';
 import { Node } from '../../classes/SinglyLinkedList/Node';
 import { StyledNode } from './StyledNode';
+import './transitions.css';
 interface State {
   value: Node['value'];
   isHead: boolean;
   isTail: boolean;
-  didUpdate: boolean;
 }
 
 interface Props {
@@ -14,41 +15,31 @@ interface Props {
   isTail: boolean;
 }
 
-const duration = 300;
-
-const defaultStyle = {
-  transition: `opacity ${duration}ms ease-in-out`,
-  opacity: 0,
-};
-const transitionStyles = {
-  entering: { opacity: 1 },
-  entered: { opacity: 1 },
-  exiting: { opacity: 0 },
-  exited: { opacity: 0 },
-};
-
 export default class NodeComponent extends React.Component<Props, State> {
+  ref: React.RefObject<HTMLDivElement>;
   constructor(props: Props) {
     super(props);
-    this.state = { ...this.props, didUpdate: false };
+    this.ref = React.createRef();
   }
 
   render() {
-    const { isTail, isHead, didUpdate } = this.state;
+    const { isTail, isHead, value } = this.props;
     return (
-      <StyledNode>
-        <div>
-          <div className='value-wrapper'>
-            <p>{this.state.value}</p>
+      <CSSTransition classNames='node' timeout={1000} key={value} in={true} {...this.props} nodeRef={this.ref}>
+        <StyledNode ref={this.ref}>
+          {!isHead && (
+            <p className='arrow-wrapper'>
+              <i className='fas fa-long-arrow-alt-right'></i>
+            </p>
+          )}
+          <div>
+            <div className='value-wrapper'>
+              <p>{value}</p>
+            </div>
+            <p className='position'>{isHead ? 'Head' : isTail ? 'Tail' : ''}</p>
           </div>
-          <p className='position'>{isHead ? 'Head' : isTail ? 'Tail' : ''}</p>
-        </div>
-        {!isTail && (
-          <p className='arrow-wrapper'>
-            <i className='fas fa-long-arrow-alt-right'></i>
-          </p>
-        )}
-      </StyledNode>
+        </StyledNode>
+      </CSSTransition>
     );
   }
 }

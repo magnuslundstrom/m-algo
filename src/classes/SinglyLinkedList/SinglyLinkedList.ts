@@ -20,7 +20,22 @@ export class SinglyLinkedList {
   }
 
   pop() {
-    console.log('Hi!');
+    if (this.length === 0) return undefined;
+    let current = this.head;
+    let newTail = current;
+    while (current!.next) {
+      newTail = current;
+      current = current!.next;
+    }
+    newTail!.next = null;
+    this.tail = newTail;
+    this.length--;
+    if (this.length === 0) {
+      this.head = null;
+      this.tail = null;
+    }
+    console.log(this.head);
+    return current;
   }
 
   traverse(cb: Callback) {
@@ -32,7 +47,13 @@ export class SinglyLinkedList {
       index++;
     }
   }
+
+  serialize(): Node[] {
+    const nodes: Node[] = [];
+    this.traverse((item) => nodes.push(item));
+    return nodes;
+  }
 }
 
-Object.defineProperty(SinglyLinkedList.prototype, 'push', { enumerable: true });
-Object.defineProperty(SinglyLinkedList.prototype, 'pop', { enumerable: true });
+// Object.defineProperty(SinglyLinkedList.prototype, 'push', { enumerable: true });
+// Object.defineProperty(SinglyLinkedList.prototype, 'pop', { enumerable: true });

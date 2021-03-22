@@ -1,55 +1,58 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import ComponentListNode from '../nodes/Node';
-import { List, ListPrototype } from '../../classes/SinglyLinkedList';
+import { List } from '../../classes/SinglyLinkedList';
 import { StyledSinglyLinkedList } from './StyledSinglyLinkedList';
 import { Sidebar } from '../sidebar/Sidebar';
 import { StyledOperateButton } from '../buttons/StyledOperateButton';
+import { TransitionGroup } from 'react-transition-group';
 
 export class Singly extends React.Component {
   state = {
     list: List,
-    functionBoxTextToDisplay: '',
+    arr: [...List.serialize()],
+    functionBoxText: '',
   };
 
-  renderList() {
-    const nodes: ReactNode[] = [];
-    this.state.list.traverse((node, index) => {
-      const isHead = index === 0 ? true : false;
-      const isTail = !node.next ? true : false;
-      nodes.push(<ComponentListNode value={node.value} isHead={isHead} isTail={isTail} key={index} />);
+  push() {
+    this.state.list.push(this.state.list.length + 1);
+    this.setState({ arr: this.state.list.serialize(), functionBoxText: this.state.list.push.toString() });
+  }
+
+  pop() {
+    this.state.list.pop();
+    const newArr = [...this.state.list.serialize()];
+    this.setState({ arr: newArr, functionBoxText: this.state.list.pop.toString() }, () => {
+      console.log(this.state.arr);
     });
-    return nodes;
   }
 
   renderOperations() {
-    const methods = Object.keys(Object.getPrototypeOf(this.state.list)) as ListPrototype[];
-    return methods.map((method) => {
-      return <StyledOperateButton onClick={() => this.operate(method)}>{method}</StyledOperateButton>;
-    });
-  }
-
-  operate(functionName: ListPrototype) {
-    let functionCalled: string = '';
-    switch (functionName) {
-      case 'push':
-        this.state.list[functionName](this.state.list.length + 1);
-        functionCalled = this.state.list[functionName].toString();
-        break;
-      case 'pop':
-        functionCalled = this.state.list[functionName].toString();
-    }
-    this.setState({ list: this.state.list, functionBoxTextToDisplay: functionCalled }, () => {});
+    return (
+      <div>
+        <StyledOperateButton onClick={() => this.push()}>Push</StyledOperateButton>
+        <StyledOperateButton onClick={() => this.pop()}>Pop</StyledOperateButton>
+      </div>
+    );
   }
 
   render() {
-    const { functionBoxTextToDisplay } = this.state;
+    const { functionBoxText } = this.state;
     return (
       <StyledSinglyLinkedList>
-        <Sidebar functionBody={functionBoxTextToDisplay}>
+        <Sidebar functionBody={functionBoxText}>
           <h2>Operations</h2>
           {this.renderOperations()}
         </Sidebar>
-        <div className='list-wrapper'>{this.state.list.length === 0 ? 'No items in the list' : this.renderList()}</div>
+        <TransitionGroup style={{ display: 'flex' }}>
+          {this.state.arr.map((node, idx) => (
+            <ComponentListNode
+              value={node.value}
+              isTail={idx === this.state.list.length - 1}
+              isHead={idx === 0}
+              key={`${node.value}`}
+            />
+          ))}
+        </TransitionGroup>
       </StyledSinglyLinkedList>
     );
   }

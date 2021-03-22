@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { colors, spacing } from '../variables';
+import { spacing } from '../variables';
 export const StyledSinglyLinkedList = styled.div`
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr 2fr;
   grid-gap: ${spacing.md};
 
   .list-wrapper {

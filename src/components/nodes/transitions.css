@@ -1,0 +1,19 @@
+.node-enter {
+  transform: translateX(-50px);
+  opacity: 0;
+}
+.node-enter-active {
+  opacity: 1;
+  transform: translateX(0px);
+  transition: transform 500ms, opacity 700ms;
+}
+
+.node-exit {
+  transform: translateX(0px);
+  opacity: 1;
+}
+.node-exit-active {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: transform 500ms, opacity 700ms;
+}
