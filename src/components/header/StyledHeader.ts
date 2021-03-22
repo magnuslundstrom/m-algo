@@ -5,6 +5,7 @@ export const StyledHeader = styled.div`
   background-color: ${colors.c400};
   display: flex;
   justify-content: space-between;
+  margin-bottom: ${spacing.lg};
 
   a {
     color: ${colors.c100};

@@ -1,21 +1,13 @@
 import React, { ReactNode } from 'react';
 import ComponentListNode from '../nodes/Node';
-import { SinglyLinkedList } from '../../classes/SinglyLinkedList/SinglyLinkedList';
-import { colors } from '../colors';
+import { List, ListPrototype } from '../../classes/SinglyLinkedList';
+import { StyledSinglyLinkedList } from './StyledSinglyLinkedList';
 import { Sidebar } from '../sidebar/Sidebar';
 import { StyledOperateButton } from '../buttons/StyledOperateButton';
 
-// Initial setup
-const defaultList = new SinglyLinkedList();
-defaultList.push('1');
-defaultList.push('2');
-defaultList.push('3');
-
-type singlyKeys = keyof typeof SinglyLinkedList.prototype;
-
 export class Singly extends React.Component {
   state = {
-    list: defaultList,
+    list: List,
     functionBoxTextToDisplay: '',
   };
 
@@ -30,13 +22,13 @@ export class Singly extends React.Component {
   }
 
   renderOperations() {
-    const methods = Object.keys(Object.getPrototypeOf(this.state.list)) as singlyKeys[];
+    const methods = Object.keys(Object.getPrototypeOf(this.state.list)) as ListPrototype[];
     return methods.map((method) => {
       return <StyledOperateButton onClick={() => this.operate(method)}>{method}</StyledOperateButton>;
     });
   }
 
-  operate(functionName: keyof typeof SinglyLinkedList.prototype) {
+  operate(functionName: ListPrototype) {
     let functionCalled: string = '';
     switch (functionName) {
       case 'push':
@@ -52,15 +44,13 @@ export class Singly extends React.Component {
   render() {
     const { functionBoxTextToDisplay } = this.state;
     return (
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', marginTop: '50px', gridGap: '25px' }}>
+      <StyledSinglyLinkedList>
         <Sidebar functionBody={functionBoxTextToDisplay}>
-          <h2 style={{ color: colors.c100 }}>Operations</h2>
+          <h2>Operations</h2>
           {this.renderOperations()}
         </Sidebar>
-        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-          {this.state.list.length === 0 ? 'No items in the list' : this.renderList()}
-        </div>
-      </div>
+        <div className='list-wrapper'>{this.state.list.length === 0 ? 'No items in the list' : this.renderList()}</div>
+      </StyledSinglyLinkedList>
     );
   }
 }
