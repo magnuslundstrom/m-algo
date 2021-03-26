@@ -7,6 +7,7 @@ export const Sidebar: FunctionComponent<SidebarProps> = ({ children, functionBod
   return (
     <StyledSidebar>
       <div>{children}</div>
+      {functionBody && <h2>Function:</h2>}
       <FunctionTextBox functionBody={functionBody} />
     </StyledSidebar>
   );

@@ -1,10 +1,9 @@
 import styled from 'styled-components';
-import { colors, spacing } from '../variables';
 export const StyledSidebar = styled.div`
   h2 {
-    color: ${colors.c100};
+    color: var(--black);
   }
-  background-color: ${colors.c400};
+  background-color: var(--gray);
   width: 100%;
-  padding: ${spacing.md};
+  padding: var(--md);
 `;

@@ -1,10 +1,4 @@
-// stores piece of data and ref to next node
-export class Node {
-  constructor(val) {
-    this.val = val;
-    this.next = null;
-  }
-}
+import { Node } from './Node';
 
 export class SinglyLinkedList {
   constructor() {
@@ -27,7 +21,7 @@ export class SinglyLinkedList {
   }
 
   pop() {
-    if (this.length == 0) return null;
+    if (this.length === 0) return null;
     let cur = this.head;
     let newTail = cur;
     while (cur.next) {
@@ -45,11 +39,11 @@ export class SinglyLinkedList {
   }
 
   shift() {
-    if (this.length == 0) return null;
+    if (this.length === 0) return null;
     const temp = this.head;
     this.head = temp.next;
     this.length--;
-    if (this.length == 0) this.tail = null;
+    if (this.length === 0) this.tail = null;
     return temp;
   }
 
@@ -111,17 +105,6 @@ export class SinglyLinkedList {
     }
   }
 
-  print() {
-    // helper method to see whats in the list
-    const arr = [];
-    let current = this.head;
-    while (current) {
-      arr.push(current.val);
-      current = current.next;
-    }
-    console.log(arr);
-  }
-
   reverse() {
     let node = this.head;
     this.head = this.tail;
@@ -136,13 +119,14 @@ export class SinglyLinkedList {
     }
     return this;
   }
+
+  serialize() {
+    const nodes = [];
+    let current = this.head;
+    while (current) {
+      nodes.push(current);
+      current = current.next;
+    }
+    return nodes;
+  }
 }
-
-export const list = new SinglyLinkedList();
-
-list.push('james');
-list.push('james1');
-list.push('james2');
-list.push('james3');
-list.reverse();
-list.print();

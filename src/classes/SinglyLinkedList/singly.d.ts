@@ -16,4 +16,5 @@ export declare class SinglyLinkedList {
   insert(index: number, value: val): boolean;
   remove(index: number): RealNode;
   reverse(): SinglyLinkedList;
+  serialize(): Node[];
 }

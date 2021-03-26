@@ -1,4 +1,4 @@
-import { SinglyLinkedList } from './SinglyLinkedList';
+import { SinglyLinkedList } from './SinglyLinkedList.js';
 export * from './Node';
 
 export const List = new SinglyLinkedList();

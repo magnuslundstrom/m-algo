@@ -1,17 +1,18 @@
 import styled from 'styled-components';
-import { colors, spacing } from '../variables';
 
 export const StyledNode = styled.div`
   display: flex;
+  margin-bottom: 20px;
   .value-wrapper {
-    background-color: ${colors.c300};
+    background-color: var(--pink);
     border-radius: 50%;
     height: 50px;
     width: 50px;
     display: grid;
+
     place-items: center;
     p {
-      color: ${colors.c100};
+      color: var(--white);
     }
   }
   p {
@@ -19,8 +20,8 @@ export const StyledNode = styled.div`
   }
 
   .arrow-wrapper {
-    margin-left: ${spacing.md};
-    margin-right: ${spacing.md};
+    margin-left: var(--md);
+    margin-right: var(--md);
   }
 
   .position {

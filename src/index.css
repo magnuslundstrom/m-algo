@@ -1,3 +1,24 @@
+:root {
+  --red: #dc3545;
+  --blue: #007bff;
+  --pink: #e83e8c;
+  --green: #28a745;
+  --gray: rgb(247, 249, 252);
+  --yellow: #ffc107;
+  --black: rgb(15, 23, 42);
+  --white: #fff;
+
+  --xs: 5px;
+  --sm: 10px;
+  --md: 15px;
+  --lg: 30px;
+  --xl: 50px;
+
+  --fast: 150ms;
+  --legal: 300ms;
+  --slow: 500ms;
+}
+
 body {
   margin: 0;
   font-family: 'IBM Plex Mono', monospace;

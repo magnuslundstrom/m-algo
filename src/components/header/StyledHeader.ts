@@ -1,14 +1,13 @@
 import styled from 'styled-components';
-import { colors, spacing } from '../variables';
 export const StyledHeader = styled.div`
-  padding: ${spacing.md};
-  background-color: ${colors.c400};
+  padding: var(--md);
+  background-color: var(--gray);
   display: flex;
   justify-content: space-between;
-  margin-bottom: ${spacing.lg};
+  margin-bottom: var(--md);
 
   a {
-    color: ${colors.c100};
+    color: var(--black);
     text-decoration: none;
   }
 `;
