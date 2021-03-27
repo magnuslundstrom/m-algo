@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { GetMethodKeys } from '../helpers/types';
+import { GetMethodKeys } from '../types';
 // To dynamically call the methods on the data structure class and pass in arguments dynamically aswell.
 
 // TODO: Replace valueInput, indexInput for something more dynamic later
@@ -7,10 +7,10 @@ import { GetMethodKeys } from '../helpers/types';
 export const callMethodWithCorrectArgs = <T, K extends GetMethodKeys<T>>(
   prototype: T,
   methodName: K,
-  valueInput: string,
-  indexInput: string
+  valueInput: number | string,
+  indexInput: number | string
 ) => {
-  const args: string[] = [];
+  const args: Array<string | number> = [];
   Reflect.getMetadata('args', prototype, methodName as string).forEach((arg: 'value' | 'index') => {
     args.push(arg === 'value' ? valueInput : indexInput);
   });
