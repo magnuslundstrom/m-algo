@@ -80,10 +80,13 @@ export class SinglyLinkedList {
   }
 
   insert(index, value) {
-    if (index < 0 || index > this.length) return false;
-    else if (index === this.length) this.push(value);
-    else if (index === 0) this.unshift(value);
-    else {
+    if (index < 0 || index > this.length) {
+      return false;
+    } else if (index === this.length) {
+      this.push(value);
+    } else if (index === 0) {
+      this.unshift(value);
+    } else {
       const newNode = new Node(value);
       const preNode = this.get(index - 1);
       const nextNode = preNode.next;
@@ -131,6 +134,8 @@ export class SinglyLinkedList {
     return nodes;
   }
 }
+
+// Used to dynamically call the functions with the correct args
 
 Reflect.defineMetadata('args', ['value'], SinglyLinkedList.prototype, 'push');
 Reflect.defineMetadata('args', [], SinglyLinkedList.prototype, 'pop');

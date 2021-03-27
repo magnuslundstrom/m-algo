@@ -5,7 +5,7 @@ export interface FunctionTextBoxProps {
 }
 
 export const FunctionTextBox: FunctionComponent<PropsWithChildren<FunctionTextBoxProps>> = ({ functionBody }) => {
-  const reg = /_([a-zA-Z]+)__WEBPACK_IMPORTED_MODULE_0__\["[a-zA-Z]+"\]/;
+  const reg = /_([a-zA-Z]+)__WEBPACK_IMPORTED_MODULE_[0-9]__\["[a-zA-Z]+"\]/;
   functionBody = functionBody.replace(reg, '$1');
 
   return (

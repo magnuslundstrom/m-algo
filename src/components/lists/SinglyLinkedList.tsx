@@ -16,7 +16,7 @@ type GetMethodKey<T> = { [K in keyof T]: T[K] extends Method ? K : never }[keyof
 export class Singly extends React.Component {
   state = {
     list: List,
-    arr: [],
+    arr: [] as any[],
     sidebar: {
       selectedOperation: 'insert',
       indexInput: '',
@@ -32,6 +32,9 @@ export class Singly extends React.Component {
   operate = (fnName: GetMethodKey<typeof List>) => {
     const { indexInput: index, valueInput: value } = this.state.sidebar;
     callMethodWithCorrectArgs(this.state.list, fnName, value, index);
+    const prevState = { ...this.state };
+    prevState.arr = this.state.list.serialize();
+    prevState.sidebar.functionBoxText = this.state.list[fnName].toString();
     this.setState({ arr: this.state.list.serialize() });
   };
 
