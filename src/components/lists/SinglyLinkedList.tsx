@@ -1,4 +1,5 @@
 import React, { ChangeEvent } from 'react';
+import { callMethodWithCorrectArgs } from '../../helpers/callMethodWithCorrectArgs';
 import ComponentListNode from '../nodes/Node';
 import { List } from '../../classes/SinglyLinkedList';
 import { StyledSinglyLinkedList } from './StyledSinglyLinkedList';
@@ -8,6 +9,9 @@ import { TransitionGroup } from 'react-transition-group';
 import { StyledOperationInput } from '../inputs/StyledOperateInput';
 
 type ValidInputString = 'indexInput' | 'valueInput';
+
+type Method = (...args: any[]) => any;
+type GetMethodKey<T> = { [K in keyof T]: T[K] extends Method ? K : never }[keyof T];
 
 export class Singly extends React.Component {
   state = {
@@ -25,16 +29,24 @@ export class Singly extends React.Component {
     this.setState({ ...this.state, sidebar: { ...this.state.sidebar, [input]: e.target.value.slice(0, 3) } });
   };
 
+  operate = (fnName: GetMethodKey<typeof List>) => {
+    const { indexInput: index, valueInput: value } = this.state.sidebar;
+    callMethodWithCorrectArgs(this.state.list, fnName, value, index);
+    this.setState({ arr: this.state.list.serialize() });
+  };
+
   renderInsert() {
     const { indexInput, valueInput } = this.state.sidebar;
     return (
       <div>
         <StyledOperationInput placeholder='Value' value={valueInput} onChange={(e) => this.changeInput(e, 'valueInput')} />
-        <StyledOperationButton>Head</StyledOperationButton>
-        <StyledOperationButton>Tail</StyledOperationButton>
+        <StyledOperationButton onClick={() => this.operate('unshift')}>Head</StyledOperationButton>
+        <StyledOperationButton onClick={() => this.operate('push')}>Tail</StyledOperationButton>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <StyledOperationInput placeholder='Index' value={indexInput} onChange={(e) => this.changeInput(e, 'indexInput')} />
-          <StyledOperationButton noMarg={true}>Insert</StyledOperationButton>
+          <StyledOperationButton noMarg={true} onClick={() => this.operate('insert')}>
+            Insert
+          </StyledOperationButton>
         </div>
       </div>
     );

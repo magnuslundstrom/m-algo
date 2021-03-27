@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { Node } from './Node';
 
 export class SinglyLinkedList {
@@ -47,8 +48,8 @@ export class SinglyLinkedList {
     return temp;
   }
 
-  unshift(val) {
-    const newHead = new Node(val);
+  unshift(value) {
+    const newHead = new Node(value);
     if (!this.head) {
       this.head = newHead;
       this.tail = newHead;
@@ -130,3 +131,13 @@ export class SinglyLinkedList {
     return nodes;
   }
 }
+
+Reflect.defineMetadata('args', ['value'], SinglyLinkedList.prototype, 'push');
+Reflect.defineMetadata('args', [], SinglyLinkedList.prototype, 'pop');
+Reflect.defineMetadata('args', [], SinglyLinkedList.prototype, 'shift');
+Reflect.defineMetadata('args', ['value'], SinglyLinkedList.prototype, 'unshift');
+Reflect.defineMetadata('args', ['index'], SinglyLinkedList.prototype, 'get');
+Reflect.defineMetadata('args', ['index', 'value'], SinglyLinkedList.prototype, 'set');
+Reflect.defineMetadata('args', ['index', 'value'], SinglyLinkedList.prototype, 'insert');
+Reflect.defineMetadata('args', [], SinglyLinkedList.prototype, 'remove');
+Reflect.defineMetadata('args', [], SinglyLinkedList.prototype, 'reverse');
