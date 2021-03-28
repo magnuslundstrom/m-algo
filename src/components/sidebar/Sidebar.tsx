@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { FunctionTextBox } from './FunctionTextBox';
 import { StyledSidebar } from './StyledSidebar';
-import { InsertOperationsMenu } from '../lists/InsertOperationsMenu';
-import { SidebarOperations } from '../lists/SidebarOperations';
+import { Operations } from '../lists/Operations';
+import { InsertOperations } from '../lists/InsertOperations';
+import { SelectOperations } from '../lists/SelectOperations';
+import { SidebarOperations as SidebarOperationsMenu } from '../lists/SidebarOperations';
 import { OperateFunction } from '../lists/SinglyLinkedList';
+
 type selection = 'insert' | 'search' | 'delete' | '';
 
 interface Props {
@@ -17,11 +20,9 @@ interface State {
 
 export const Sidebar: React.FC<Props> = ({ operate }) => {
   const [state, setState] = useState<State>({
-    selectedOperation: 'insert',
+    selectedOperation: 'search',
     functionBoxText: '',
   });
-
-  const curriedOperate = () => operate.bind(null, '1', '1');
 
   const setDisplay = (selection: selection) => {
     setState({ ...state, selectedOperation: selection });
@@ -29,8 +30,13 @@ export const Sidebar: React.FC<Props> = ({ operate }) => {
 
   return (
     <StyledSidebar>
-      <SidebarOperations setDisplay={setDisplay} selected={state.selectedOperation} />
-      {state.selectedOperation === 'insert' && <InsertOperationsMenu operate={operate} />}
+      <SidebarOperationsMenu setDisplay={setDisplay} selected={state.selectedOperation} />
+      {state.selectedOperation === 'insert' && (
+        <Operations operate={operate} render={(zippedProps) => <InsertOperations {...zippedProps} />} />
+      )}
+      {state.selectedOperation === 'search' && (
+        <Operations operate={operate} render={(zippedProps) => <SelectOperations {...zippedProps} />} />
+      )}
       {state.functionBoxText && <h2>Function:</h2>}
       <FunctionTextBox functionBody={state.functionBoxText} />
     </StyledSidebar>

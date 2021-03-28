@@ -1,24 +1,9 @@
-import React, { useState, ChangeEvent } from 'react';
-import { isNumber } from '../../helpers/functions';
+import React from 'react';
 import { StyledOperationButton } from '../buttons/StyledOperateButton';
 import { StyledOperationInput } from '../inputs/StyledOperateInput';
-import { OperateFunction } from './SinglyLinkedList';
+import { ZippedProps } from './Operations';
 
-interface Props {
-  operate: OperateFunction;
-}
-
-export const InsertOperationsMenu: React.FC<Props> = ({ operate }) => {
-  const [state, setState] = useState({ value: '4', index: '2' });
-
-  const changeValue = (e: ChangeEvent<HTMLInputElement>) => setState({ ...state, value: e.target.value.slice(0, 3) });
-  const changeIndex = (e: ChangeEvent<HTMLInputElement>) => setState({ ...state, index: e.target.value });
-
-  const curriedOperate = (() => {
-    const index = isNumber(state.index) ? parseInt(state.index) : 0;
-    return operate.bind(null, index, state.value);
-  })();
-
+export const InsertOperations: React.FC<ZippedProps> = ({ changeIndex, changeValue, curriedOperate, state }) => {
   return (
     <div>
       <StyledOperationInput placeholder='Value' value={state.value} onChange={changeValue} />

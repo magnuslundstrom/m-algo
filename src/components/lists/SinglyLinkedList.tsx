@@ -8,7 +8,6 @@ import ComponentListNode from '../nodes/Node';
 import { List } from '../../classes/SinglyLinkedList';
 import { StyledSinglyLinkedList } from './StyledSinglyLinkedList';
 import { Sidebar } from '../sidebar/Sidebar';
-
 export type OperateFunction = (index: string | number, value: string | number, methodName: GetMethodKeys<typeof List>) => void;
 
 export class Singly extends React.Component {
@@ -18,6 +17,7 @@ export class Singly extends React.Component {
   };
 
   operate = (index: string | number, value: string | number, methodName: GetMethodKeys<typeof List>) => {
+    console.log(this);
     callMethodWithCorrectArgs(this.state.list, methodName, value, index);
     const prevState = { ...this.state };
     prevState.arr = this.state.list.serialize();
