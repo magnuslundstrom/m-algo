@@ -3,7 +3,8 @@ import { FunctionTextBox } from './FunctionTextBox';
 import { StyledSidebar } from './StyledSidebar';
 import { Operations } from '../lists/Operations';
 import { InsertOperations } from '../lists/InsertOperations';
-import { SelectOperations } from '../lists/SelectOperations';
+import { SearchOperations } from '../lists/SearchOperations';
+import { DeleteOperations } from '../lists/DeleteOperations';
 import { SidebarOperations as SidebarOperationsMenu } from '../lists/SidebarOperations';
 import { OperateFunction } from '../lists/SinglyLinkedList';
 
@@ -35,8 +36,12 @@ export const Sidebar: React.FC<Props> = ({ operate }) => {
         <Operations operate={operate} render={(zippedProps) => <InsertOperations {...zippedProps} />} />
       )}
       {state.selectedOperation === 'search' && (
-        <Operations operate={operate} render={(zippedProps) => <SelectOperations {...zippedProps} />} />
+        <Operations operate={operate} render={(zippedProps) => <SearchOperations {...zippedProps} />} />
       )}
+      {state.selectedOperation === 'delete' && (
+        <Operations operate={operate} render={(zippedProps) => <DeleteOperations {...zippedProps} />} />
+      )}
+
       {state.functionBoxText && <h2>Function:</h2>}
       <FunctionTextBox functionBody={state.functionBoxText} />
     </StyledSidebar>

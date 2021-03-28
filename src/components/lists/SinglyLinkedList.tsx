@@ -17,7 +17,7 @@ export class Singly extends React.Component {
   };
 
   operate = (index: string | number, value: string | number, methodName: GetMethodKeys<typeof List>) => {
-    console.log(this);
+    console.log(this.state.list[methodName]);
     callMethodWithCorrectArgs(this.state.list, methodName, value, index);
     const prevState = { ...this.state };
     prevState.arr = this.state.list.serialize();

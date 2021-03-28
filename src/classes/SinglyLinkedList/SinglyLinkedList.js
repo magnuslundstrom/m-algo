@@ -75,7 +75,7 @@ export class SinglyLinkedList {
   set(index, value) {
     const node = this.get(index);
     if (!node) return false;
-    node.val = value;
+    node.value = value;
     return true;
   }
 
@@ -136,7 +136,6 @@ export class SinglyLinkedList {
 }
 
 // Used to dynamically call the functions with the correct args
-
 Reflect.defineMetadata('args', ['value'], SinglyLinkedList.prototype, 'push');
 Reflect.defineMetadata('args', [], SinglyLinkedList.prototype, 'pop');
 Reflect.defineMetadata('args', [], SinglyLinkedList.prototype, 'shift');
@@ -144,5 +143,13 @@ Reflect.defineMetadata('args', ['value'], SinglyLinkedList.prototype, 'unshift')
 Reflect.defineMetadata('args', ['index'], SinglyLinkedList.prototype, 'get');
 Reflect.defineMetadata('args', ['index', 'value'], SinglyLinkedList.prototype, 'set');
 Reflect.defineMetadata('args', ['index', 'value'], SinglyLinkedList.prototype, 'insert');
-Reflect.defineMetadata('args', [], SinglyLinkedList.prototype, 'remove');
+Reflect.defineMetadata('args', ['index'], SinglyLinkedList.prototype, 'remove');
 Reflect.defineMetadata('args', [], SinglyLinkedList.prototype, 'reverse');
+
+/*
+How this flow works:
+We set the args that we want in a function, then we specify the names. 
+What happens then is the callMethodWithCorrectArgs will fill in the correct arguments in the correct order.
+
+Could be refactored into a decorator later, but then we need to rewrite data structure into TS
+*/

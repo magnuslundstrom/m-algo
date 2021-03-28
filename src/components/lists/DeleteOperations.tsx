@@ -3,15 +3,14 @@ import { StyledOperationButton } from '../buttons/StyledOperateButton';
 import { StyledOperationInput } from '../inputs/StyledOperateInput';
 import { ZippedProps } from './Operations';
 
-export const DeleteOperations: React.FC<ZippedProps> = ({ changeIndex, changeValue, curriedOperate, state }) => {
+export const DeleteOperations: React.FC<ZippedProps> = ({ changeIndex, curriedOperate, state }) => {
   return (
     <div>
-      <StyledOperationInput placeholder='Hi' value={state.value} onChange={changeValue} />
-      <StyledOperationButton onClick={() => curriedOperate('unshift')}>Head</StyledOperationButton>
-      <StyledOperationButton onClick={() => curriedOperate('push')}>Tail</StyledOperationButton>
+      <StyledOperationButton onClick={() => curriedOperate('shift')}>Head</StyledOperationButton>
+      <StyledOperationButton onClick={() => curriedOperate('pop')}>Tail</StyledOperationButton>
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <StyledOperationInput placeholder='Index' value={state.index} onChange={changeIndex} />
-        <StyledOperationButton noMarg={true} onClick={() => curriedOperate('insert')}>
+        <StyledOperationButton noMarg={true} onClick={() => curriedOperate('remove')}>
           Insert
         </StyledOperationButton>
       </div>

@@ -8,7 +8,7 @@ interface Props {
 }
 
 export const Operations: React.FC<Props> = ({ render, operate }) => {
-  const [state, setState] = useState({ value: '4', index: '2' });
+  const [state, setState] = useState({ value: '', index: '' });
 
   const changeValue = (e: ChangeEvent<HTMLInputElement>) => setState({ ...state, value: e.target.value.slice(0, 3) });
   const changeIndex = (e: ChangeEvent<HTMLInputElement>) => setState({ ...state, index: e.target.value });
