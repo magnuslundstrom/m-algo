@@ -12,21 +12,20 @@ type selection = 'insert' | 'search' | 'delete' | '';
 
 interface Props {
   operate: OperateFunction;
+  functionBody: string;
 }
 
 interface State {
   selectedOperation: selection;
-  functionBoxText: string;
 }
 
-export const Sidebar: React.FC<Props> = ({ operate }) => {
+export const Sidebar: React.FC<Props> = ({ operate, functionBody }) => {
   const [state, setState] = useState<State>({
     selectedOperation: 'search',
-    functionBoxText: '',
   });
 
   const setDisplay = (selection: selection) => {
-    setState({ ...state, selectedOperation: selection });
+    setState({ selectedOperation: selection });
   };
 
   return (
@@ -42,8 +41,8 @@ export const Sidebar: React.FC<Props> = ({ operate }) => {
         <Operations operate={operate} render={(zippedProps) => <DeleteOperations {...zippedProps} />} />
       )}
 
-      {state.functionBoxText && <h2>Function:</h2>}
-      <FunctionTextBox functionBody={state.functionBoxText} />
+      {functionBody && <h2>Function:</h2>}
+      <FunctionTextBox functionBody={functionBody} />
     </StyledSidebar>
   );
 };

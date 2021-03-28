@@ -11,7 +11,7 @@ export const DeleteOperations: React.FC<ZippedProps> = ({ changeIndex, curriedOp
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <StyledOperationInput placeholder='Index' value={state.index} onChange={changeIndex} />
         <StyledOperationButton noMarg={true} onClick={() => curriedOperate('remove')}>
-          Insert
+          Delete
         </StyledOperationButton>
       </div>
     </div>

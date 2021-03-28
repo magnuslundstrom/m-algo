@@ -1,5 +1,6 @@
 import React, { useState, ChangeEvent } from 'react';
 import { isNumber } from '../../helpers/functions';
+import { GetLastParam, GetParams } from '../../helpers/types';
 import { OperateFunction } from '../lists/SinglyLinkedList';
 
 interface Props {
@@ -33,6 +34,3 @@ export interface ZippedProps {
 
 type ChangeFunc = (e: ChangeEvent<HTMLInputElement>) => void;
 type CurriedOperateFunctionParam = GetLastParam<GetParams<OperateFunction>>;
-
-type GetParams<T extends (...args: any[]) => void> = T extends (...args: infer S) => void ? S : never;
-type GetLastParam<P extends any[]> = P extends [...any[], infer T] ? T : never;

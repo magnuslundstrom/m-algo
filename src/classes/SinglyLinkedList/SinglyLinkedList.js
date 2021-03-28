@@ -97,10 +97,13 @@ export class SinglyLinkedList {
     return true;
   }
   remove(index) {
-    if (index < 0 || index > this.length) return null;
-    else if (index === this.length) return this.pop();
-    else if (index === 0) return this.shift();
-    else {
+    if (index < 0 || index > this.length) {
+      return null;
+    } else if (index === this.length) {
+      return this.pop();
+    } else if (index === 0) {
+      return this.shift();
+    } else {
       const foundNode = this.get(index - 1);
       const temp = foundNode.next;
       foundNode.next = temp.next;
