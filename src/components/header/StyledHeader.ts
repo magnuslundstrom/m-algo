@@ -5,9 +5,13 @@ export const StyledHeader = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: var(--md);
-
   a {
-    color: var(--black);
     text-decoration: none;
+    color: var(--black);
+  }
+  div {
+    a {
+      margin-left: var(--lg);
+    }
   }
 `;

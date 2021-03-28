@@ -1,12 +1,15 @@
 import { FunctionComponent } from 'react';
+import { Link } from 'react-router-dom';
+import { routes } from '../../routes';
 import { StyledHeader } from './StyledHeader';
 
 const Header: FunctionComponent = () => {
   return (
     <StyledHeader>
-      <a href='/'>m-algo</a>
+      <Link to='/'>m-algo</Link>
       <div>
-        <a href='/singly'>singly linked list</a>
+        <Link to={routes.singlyLinkedList}>singly linked list</Link>
+        <Link to={routes.why}>why?</Link>
       </div>
     </StyledHeader>
   );

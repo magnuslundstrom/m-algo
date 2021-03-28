@@ -1,9 +1,7 @@
 import React from 'react';
 import { TransitionGroup } from 'react-transition-group';
-// helpers
 import { callMethodWithCorrectArgs } from '../../helpers/functions';
 import { GetMethodKeys } from '../../helpers/types';
-// components
 import ComponentListNode from '../nodes/Node';
 import { List } from '../../classes/SinglyLinkedList';
 import { StyledSinglyLinkedList } from './StyledSinglyLinkedList';
