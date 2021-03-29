@@ -10,6 +10,7 @@ const Header: FunctionComponent = () => {
       <div>
         <Link to={routes.singlyLinkedList}>singly linked list</Link>
         <Link to={routes.why}>why?</Link>
+        <Link to='/test'>Testing page structure</Link>
       </div>
     </StyledHeader>
   );

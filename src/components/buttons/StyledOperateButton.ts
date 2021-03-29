@@ -19,7 +19,7 @@ type MenuButtonProps = {
 export const StyledMenuButton = styled(BaseButton)<MenuButtonProps>`
   text-decoration: ${({ highlight }) => (highlight ? 'underline' : 'none')};
   background-color: var(--gray);
-  color: var(--black);
+  color: var(--light-gray);
   margin-right: 10px;
   padding: 0px;
 `;

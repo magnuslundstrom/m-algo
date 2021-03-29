@@ -34,7 +34,7 @@ export class Singly extends React.Component {
     return (
       <StyledSinglyLinkedList>
         <Sidebar operate={this.operate} functionBody={this.state.functionBody} />
-        <div>
+        <div className='list-wrapper'>
           <h1>Singly Linked List</h1>
           <TransitionGroup style={{ display: 'flex', flexWrap: 'wrap' }}>
             {this.state.list.serialize().map((node, idx) => (

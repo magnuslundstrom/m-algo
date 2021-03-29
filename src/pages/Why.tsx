@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const WhyPage: React.FC = () => {
+export const Why: React.FC = () => {
   return (
     <div>
       <p>

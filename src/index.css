@@ -3,9 +3,10 @@
   --blue: #007bff;
   --pink: #e83e8c;
   --green: #28a745;
-  --gray: rgb(247, 249, 252);
+  --light-gray: #8b949e;
+  --gray: #0d1117;
   --yellow: #ffc107;
-  --black: rgb(15, 23, 42);
+  --black: #010409;
   --white: #fff;
 
   --xs: 5px;
@@ -24,6 +25,15 @@ body {
   font-family: 'IBM Plex Mono', monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--black);
+}
+
+p {
+  color: var(--light-gray);
+}
+
+a {
+  color: var(--blue);
 }
 
 code {

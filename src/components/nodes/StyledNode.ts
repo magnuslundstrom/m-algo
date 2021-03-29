@@ -15,13 +15,15 @@ export const StyledNode = styled.div`
       color: var(--white);
     }
   }
-  p {
-    color: black;
-  }
 
   .arrow-wrapper {
     margin-left: var(--md);
     margin-right: var(--md);
+    i {
+      color: var(--light-gray);
+      font-weight: 700;
+      font-size: 20px;
+    }
   }
 
   .position {

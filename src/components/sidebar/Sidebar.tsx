@@ -41,8 +41,7 @@ export const Sidebar: React.FC<Props> = ({ operate, functionBody }) => {
         <Operations operate={operate} render={(zippedProps) => <DeleteOperations {...zippedProps} />} />
       )}
 
-      {functionBody && <h2>Function:</h2>}
-      <FunctionTextBox functionBody={functionBody} />
+      {functionBody && <FunctionTextBox functionBody={functionBody} />}
     </StyledSidebar>
   );
 };

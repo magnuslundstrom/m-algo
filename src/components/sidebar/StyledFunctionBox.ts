@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 export const StyledFunctionBox = styled.div<{ display: string }>`
-  color: var(--black);
+  color: var(--light-gray);
   padding: var(--md);
-  ${({ display }) => display && 'border: 1px solid var(--black)'};
+  ${({ display }) => display && 'border: 1px solid var(--light-gray)'};
   margin-top: var(--lg);
 `;

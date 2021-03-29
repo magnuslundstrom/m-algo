@@ -10,6 +10,7 @@ export const FunctionTextBox: FunctionComponent<PropsWithChildren<FunctionTextBo
 
   return (
     <StyledFunctionBox display={functionBody}>
+      <h3>Function:</h3>
       <pre>{functionBody}</pre>
     </StyledFunctionBox>
   );
