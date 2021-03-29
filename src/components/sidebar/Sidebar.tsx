@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { FunctionTextBox } from './FunctionTextBox';
 import { StyledSidebar } from './StyledSidebar';
-import { Operations } from '../lists/Operations';
-import { InsertOperations } from '../lists/InsertOperations';
-import { SearchOperations } from '../lists/SearchOperations';
-import { DeleteOperations } from '../lists/DeleteOperations';
-import { SidebarOperations as SidebarOperationsMenu } from '../lists/SidebarOperations';
-import { OperateFunction } from '../lists/SinglyLinkedList';
+import { Operations } from '../core/Operations';
+import { InsertOperations } from '../structures/SinglyLinkedList/operations/InsertOperations';
+import { SearchOperations } from '../structures/SinglyLinkedList/operations/SearchOperations';
+import { DeleteOperations } from '../structures/SinglyLinkedList/operations/DeleteOperations';
+import { SidebarOperations as SidebarOperationsMenu } from './SidebarOperations';
+import { OperateFunction } from '../structures/SinglyLinkedList/SinglyLinkedList';
 
 type selection = 'insert' | 'search' | 'delete' | '';
 
@@ -21,7 +21,7 @@ interface State {
 
 export const Sidebar: React.FC<Props> = ({ operate, functionBody }) => {
   const [state, setState] = useState<State>({
-    selectedOperation: 'search',
+    selectedOperation: 'insert',
   });
 
   const setDisplay = (selection: selection) => {

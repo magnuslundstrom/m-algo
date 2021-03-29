@@ -1,19 +1,23 @@
 .node-enter {
   transform: translateX(-50px);
   opacity: 0;
+  width: 0%;
 }
 .node-enter-active {
   opacity: 1;
   transform: translateX(0px);
-  transition: transform 500ms, opacity 700ms;
+  width: 50px;
+  transition: 700ms;
 }
 
 .node-exit {
   transform: translateX(0px);
+  width: 50px;
   opacity: 1;
 }
 .node-exit-active {
+  width: 0%;
   opacity: 0;
-  transform: translateX(-40px);
-  transition: transform 500ms, opacity 700ms;
+  transform: translateX(-50px);
+  transition: 700ms;
 }

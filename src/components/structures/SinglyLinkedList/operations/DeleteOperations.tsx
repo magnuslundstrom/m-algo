@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyledOperationButton } from '../buttons/StyledOperateButton';
-import { StyledOperationInput } from '../inputs/StyledOperateInput';
-import { ZippedProps } from './Operations';
+import { SinglyLinkedList } from '../../../../models/SinglyLinkedList/singly';
+import { StyledOperationButton } from '../../../pure/buttons/StyledOperateButton';
+import { StyledOperationInput } from '../../../pure/inputs/StyledOperateInput';
+import { ZippedProps } from '../../../core/Operations';
 
-export const DeleteOperations: React.FC<ZippedProps> = ({ changeIndex, curriedOperate, state }) => {
+export const DeleteOperations: React.FC<ZippedProps<SinglyLinkedList>> = ({ changeIndex, curriedOperate, state }) => {
   return (
     <div>
       <StyledOperationButton onClick={() => curriedOperate('shift')}>Head</StyledOperationButton>

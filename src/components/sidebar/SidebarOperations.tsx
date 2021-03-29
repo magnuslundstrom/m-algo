@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { StyledMenuButton } from '../buttons/StyledOperateButton';
+import { StyledMenuButton } from '../pure/buttons/StyledOperateButton';
+
 type selection = 'insert' | 'search' | 'delete' | '';
 
 interface Props {

@@ -1,9 +1,15 @@
 import React from 'react';
-import { StyledOperationButton } from '../buttons/StyledOperateButton';
-import { StyledOperationInput } from '../inputs/StyledOperateInput';
-import { ZippedProps } from './Operations';
+import { StyledOperationButton } from '../../../pure/buttons/StyledOperateButton';
+import { StyledOperationInput } from '../../../pure/inputs/StyledOperateInput';
+import { ZippedProps } from '../../../core/Operations';
+import { SinglyLinkedList } from '../../../../models/SinglyLinkedList/singly';
 
-export const SearchOperations: React.FC<ZippedProps> = ({ changeIndex, changeValue, curriedOperate, state }) => {
+export const SearchOperations: React.FC<ZippedProps<SinglyLinkedList>> = ({
+  changeIndex,
+  changeValue,
+  curriedOperate,
+  state,
+}) => {
   return (
     <div>
       <StyledOperationInput placeholder='Index' value={state.index} onChange={changeIndex} />

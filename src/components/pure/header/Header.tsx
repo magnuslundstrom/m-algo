@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 import { Link } from 'react-router-dom';
-import { routes } from '../../routes';
+import { routes } from '../../../routes';
 import { StyledHeader } from './StyledHeader';
 
 const Header: FunctionComponent = () => {
@@ -10,7 +10,6 @@ const Header: FunctionComponent = () => {
       <div>
         <Link to={routes.singlyLinkedList}>singly linked list</Link>
         <Link to={routes.why}>why?</Link>
-        <Link to='/test'>Testing page structure</Link>
       </div>
     </StyledHeader>
   );

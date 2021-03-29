@@ -1,14 +1,14 @@
 import React, { useState, ChangeEvent } from 'react';
 import { isNumber } from '../../helpers/functions';
 import { GetLastParam, GetParams } from '../../helpers/types';
-import { OperateFunction } from '../lists/SinglyLinkedList';
+import { OperateFunction } from '../core/StructureComponent';
 
-interface Props {
-  render: (zippedProps: ZippedProps) => React.ReactElement<ZippedProps>;
-  operate: OperateFunction;
+interface Props<T> {
+  render: (zippedProps: ZippedProps<T>) => React.ReactElement<ZippedProps<T>>;
+  operate: OperateFunction<T>;
 }
 
-export const Operations: React.FC<Props> = ({ render, operate }) => {
+export const Operations = <T,>({ render, operate }: Props<T>) => {
   const [state, setState] = useState({ value: '', index: '' });
 
   const changeValue = (e: ChangeEvent<HTMLInputElement>) => setState({ ...state, value: e.target.value.slice(0, 3) });
@@ -22,10 +22,10 @@ export const Operations: React.FC<Props> = ({ render, operate }) => {
   return <div>{render({ changeValue, changeIndex, curriedOperate, state })}</div>;
 };
 
-export interface ZippedProps {
+export interface ZippedProps<T> {
   changeValue: ChangeFunc;
   changeIndex: ChangeFunc;
-  curriedOperate: (operation: CurriedOperateFunctionParam) => ReturnType<OperateFunction>;
+  curriedOperate: (operation: CurriedOperateFunctionParam<T>) => ReturnType<OperateFunction<T>>;
   state: {
     index: string | number;
     value: string | number;
@@ -33,4 +33,4 @@ export interface ZippedProps {
 }
 
 type ChangeFunc = (e: ChangeEvent<HTMLInputElement>) => void;
-type CurriedOperateFunctionParam = GetLastParam<GetParams<OperateFunction>>;
+type CurriedOperateFunctionParam<T> = GetLastParam<GetParams<OperateFunction<T>>>;

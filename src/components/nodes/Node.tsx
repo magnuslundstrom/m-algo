@@ -1,6 +1,6 @@
 import React from 'react';
 import { CSSTransition } from 'react-transition-group';
-import { Node } from '../../classes/SinglyLinkedList/Node';
+import { Node } from '../../models/SinglyLinkedList/Node';
 import { StyledNode } from './StyledNode';
 import './transitions.css';
 interface State {
@@ -25,7 +25,7 @@ export default class NodeComponent extends React.Component<Props, State> {
   render() {
     const { isTail, isHead, value } = this.props;
     return (
-      <CSSTransition classNames='node' timeout={1000} key={value} in={true} {...this.props} nodeRef={this.ref}>
+      <CSSTransition classNames='node' timeout={700} key={value} in={true} {...this.props} nodeRef={this.ref}>
         <StyledNode ref={this.ref}>
           {!isHead && (
             <p className='arrow-wrapper'>
