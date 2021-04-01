@@ -1,23 +1,49 @@
-.node-enter {
+.ins-del-enter {
   transform: translateX(-50px);
   opacity: 0;
   width: 0%;
 }
-.node-enter-active {
+
+.ins-del-enter-active {
   opacity: 1;
   transform: translateX(0px);
   width: 50px;
   transition: 700ms;
 }
 
-.node-exit {
+.ins-del-exit {
   transform: translateX(0px);
   width: 50px;
   opacity: 1;
 }
-.node-exit-active {
+
+.ins-del-exit-active {
   width: 0%;
   opacity: 0;
   transform: translateX(-50px);
+  transition: 700ms;
+}
+
+.search-enter {
+  transform: translateY(-50px);
+  opacity: 0;
+}
+
+.search-enter-active {
+  opacity: 1;
+  transform: translateY(0px);
+  width: 50px;
+  transition: 700ms;
+}
+.search-exit {
+  transform: translateY(0px);
+  width: 50px;
+  opacity: 1;
+}
+
+.search-exit-active {
+  width: 0%;
+  opacity: 0;
+  transform: translateY(-50px);
   transition: 700ms;
 }

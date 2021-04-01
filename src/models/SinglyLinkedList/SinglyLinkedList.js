@@ -62,7 +62,9 @@ export class SinglyLinkedList {
   }
 
   get(index) {
-    if (index >= this.length || index < 0) return null;
+    if (index >= this.length || index < 0) {
+      return null;
+    }
     let counter = 0;
     let current = this.head;
     while (counter < index) {
@@ -74,7 +76,9 @@ export class SinglyLinkedList {
 
   set(index, value) {
     const node = this.get(index);
-    if (!node) return false;
+    if (!node) {
+      return false;
+    }
     node.value = value;
     return true;
   }

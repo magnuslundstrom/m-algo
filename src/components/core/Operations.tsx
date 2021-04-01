@@ -22,10 +22,12 @@ export const Operations = <T,>({ render, operate }: Props<T>) => {
   return <div>{render({ changeValue, changeIndex, curriedOperate, state })}</div>;
 };
 
+type CurriedOperate<T> = (...args: CurriedOperateFunctionParam<T>) => ReturnType<OperateFunction<T>>;
+
 export interface ZippedProps<T> {
   changeValue: ChangeFunc;
   changeIndex: ChangeFunc;
-  curriedOperate: (operation: CurriedOperateFunctionParam<T>) => ReturnType<OperateFunction<T>>;
+  curriedOperate: CurriedOperate<T>;
   state: {
     index: string | number;
     value: string | number;
@@ -33,4 +35,9 @@ export interface ZippedProps<T> {
 }
 
 type ChangeFunc = (e: ChangeEvent<HTMLInputElement>) => void;
-type CurriedOperateFunctionParam<T> = GetLastParam<GetParams<OperateFunction<T>>>;
+type GetLastTwoParams<T extends any[]> = T extends [...args: any, secondLastArg: infer A, lastArg: infer B]
+  ? [A, B]
+  : T extends [...args: any, secondLastArg: infer A]
+  ? [A, undefined]
+  : [];
+type CurriedOperateFunctionParam<T> = GetLastTwoParams<GetParams<OperateFunction<T>>>;
